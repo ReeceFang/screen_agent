@@ -679,3 +679,14 @@ def make_uia_tools(state: UIAToolsState):
         )
 
     return [observe_window, click_control, select_combobox_item]
+
+
+if __name__ == "__main__":
+    """测试用例。"""
+
+    state = UIAToolsState()
+    start = time.time()
+    window = json.dumps(state.observe_window_impl(), ensure_ascii=False)
+    end = time.time()
+    # print(window)
+    print(f"耗时：{end - start:.2f} 秒")

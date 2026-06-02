@@ -34,6 +34,7 @@ memory/
 *.log
 *.tmp
 *.bak
+temp.py
 tmp/
 temp/
 
@@ -47,4 +48,3 @@ temp/
 .DS_Store
 Thumbs.db
 desktop.ini
-

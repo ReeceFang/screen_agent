@@ -43,8 +43,8 @@ api_key = os.getenv("DASHSCOPE_API_KEY")
 if not api_key:
     raise RuntimeError("缺少 DASHSCOPE_API_KEY，请先在 .env 文件中配置。")
 
-llm = ChatOpenAI(
-    model="qwen-plus",
+llm_worker = ChatOpenAI(
+    model="qwen3.6-flash",
     api_key=api_key,
     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
     temperature=0,
@@ -101,13 +101,20 @@ SYSTEM_PROMPT = """
 
 
 agent = create_agent(
-    model=llm,
+    model=llm_worker,
     tools=tools,
     system_prompt=SYSTEM_PROMPT,
     # checkpointer=checkpointer,
 )
 
 """ planer agent"""
+
+llm_planer = ChatOpenAI(
+    model="qwen-plus",
+    api_key=api_key,
+    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+    temperature=0,
+)
 
 
 class PlanAction(BaseModel):
@@ -194,7 +201,7 @@ PLANER_SYSTEM_PROMPT = f"""
 
 
 planer_agent = create_agent(
-    model=llm,
+    model=llm_planer,
     tools=[],
     system_prompt=PLANER_SYSTEM_PROMPT,
     response_format=PlanActions,
