@@ -50,7 +50,8 @@ def run_one(graph, message: str) -> None:
     state_patch = {
         "user_request": message,
     }
-    config = {"configurable": {"thread_id": f"run-{uuid4()}"}}
+    # config = {"configurable": {"thread_id": f"run-{uuid4()}"}}
+    config = {"configurable": {"thread_id": "thread_1"}}
 
     result = graph.invoke(create_initial_state(state_patch), config=config)
     while has_interrupt(result):
@@ -58,10 +59,6 @@ def run_one(graph, message: str) -> None:
         print("[中断确认]")
         print_interrupts(result)
         answer = input("输入 y 确认继续：").strip().lower()
-        if answer != "y":
-            print("已取消继续执行。")
-            return
-
         result = graph.invoke(Command(resume=answer), config=config)
 
     print()

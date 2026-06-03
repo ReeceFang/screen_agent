@@ -35,6 +35,43 @@ class ControlRecord:
     summary: dict[str, Any]
 
 
+"""
+ControlRecord:
+{
+    "control_id": "c_1",
+    "control": "<真实 UIA 控件对象，LLM 不可见>",
+    "summary": {
+        "id": "c_1",
+        "type": "Button",
+        "name": "打开图片",
+        "automation_id": "btnOpenImage",
+        "class_name": "Button",
+        "enabled": True,
+        "visible": True,
+        "rect": [100, 200, 220, 240],
+        "parent_name": "推理界面",
+        "parent_type": "Pane",
+        "actionable_hint": True,
+    },
+}
+
+summary:
+{
+    "id": "c_1",
+    "type": "Button",
+    "name": "打开图片",
+    "automation_id": "btnOpenImage",
+    "class_name": "Button",
+    "enabled": True,
+    "visible": True,
+    "rect": [100, 200, 220, 240],
+    "parent_name": "推理界面",
+    "parent_type": "Pane",
+    "actionable_hint": True,
+}
+"""
+
+
 class UIAToolsState:
     # observe_window 会保留这些类型的控件。
     # 这样可以避免把大量无意义布局节点都发给 LLM。
